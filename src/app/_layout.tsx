@@ -17,15 +17,8 @@ export default function RootLayout() {
         headerTintColor: colorScheme === 'dark' ? DarkTheme.colors.text : DefaultTheme.colors.text,
       }}
     >
-      <Stack.Screen name="(auth)" options={{
-        title: 'Login',
-        headerShown: true,
-        }}
-      />
-      <Stack.Screen name="(protected)" options={{
-        headerShown: false,
-      }}
-      />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(protected)"/>
     </Stack>
     </ThemeProvider>
   );
