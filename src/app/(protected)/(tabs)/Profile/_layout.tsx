@@ -1,12 +1,13 @@
 import { Stack } from "expo-router";
 
-export default function ProtectedLayout() {
+const ProfileLayout = () => {
   return (
     <Stack
       screenOptions={{
         headerShown: false,
       }}
-    >
-    </Stack>
-  );
+      />
+  )
 }
+
+export default ProfileLayout

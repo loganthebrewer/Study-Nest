@@ -7,6 +7,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <Stack
       screenOptions={{
         headerShown: false,
@@ -16,13 +17,7 @@ export default function RootLayout() {
         headerTintColor: colorScheme === 'dark' ? DarkTheme.colors.text : DefaultTheme.colors.text,
       }}
     >
-      <Stack.Screen name="index" options={
-        {
-          title: 'Home',
-          headerShown: true,
-        }
-      }/>
-      <Stack.Screen name="Auth" options={{
+      <Stack.Screen name="(auth)" options={{
         title: 'Login',
         headerShown: true,
         }}
@@ -32,6 +27,7 @@ export default function RootLayout() {
       }}
       />
     </Stack>
+    </ThemeProvider>
   );
 
 }
