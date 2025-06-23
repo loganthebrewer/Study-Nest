@@ -7,6 +7,21 @@ export default function ProtectedLayout() {
         headerShown: false,
       }}
     >
+    <Stack.Screen
+    name="(tabs)"
+    options={{
+      title: "",
+      headerShown: false
+    }}
+    />
+    <Stack.Screen
+    name="newMarketplacePost"
+    options={{
+      title: "New Post",
+      headerShown: true
+    }}
+    />
+
     </Stack>
   );
 }
