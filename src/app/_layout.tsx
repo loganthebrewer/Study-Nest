@@ -1,13 +1,17 @@
 import { Stack } from "expo-router";
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useColorScheme } from "react-native";
-
+//define global providers
+import{GestureHandlerRootView} from "react-native-gesture-handler"
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <SafeAreaProvider>
+    <GestureHandlerRootView>
+   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <Stack
       screenOptions={{
         headerShown: false,
@@ -21,6 +25,8 @@ export default function RootLayout() {
       <Stack.Screen name="(protected)"/>
     </Stack>
     </ThemeProvider>
+    </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 
 }

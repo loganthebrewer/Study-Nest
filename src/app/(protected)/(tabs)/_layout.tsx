@@ -3,6 +3,7 @@ import { router, Tabs, Link } from "expo-router";
 import React from "react";
 import { Button, useColorScheme } from "react-native";
 import Colors from "@/constants/Colors";
+import Entypo from '@expo/vector-icons/Entypo';
 
 
 export default function TabsLayout() {
@@ -13,7 +14,9 @@ export default function TabsLayout() {
     color: string;
   }) {
     return <FontAwesome size={20} style={{ marginBottom: -3 }} {...props} />;
+
   }
+
 
   return (
     <Tabs
@@ -42,7 +45,15 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }
       } />
+      <Tabs.Screen name="Chat" options={
+        {
+
+        title: 'Chat',
+        headerShown: true,
+        tabBarIcon: ({color}) => <TabBarIcon name="wechat" color={color} />
+        
+        }
+      } />
     </Tabs>
   );
 }
-
