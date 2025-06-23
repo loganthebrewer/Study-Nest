@@ -35,6 +35,13 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
+      <Tabs.Screen name="(marketplace)" options={
+        {
+          title: 'Marketplace',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="shopping-basket" color={color} />,
+        }
+      } />
       <Tabs.Screen name="Profile" options={
         {
           title: 'Profile',
