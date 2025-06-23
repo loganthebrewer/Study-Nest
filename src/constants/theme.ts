@@ -8,9 +8,9 @@ export const DefaultTheme: Theme = {
     background: Colors.light.background,
     text: Colors.light.text,
     primary: Colors.light.tint,
-    card: '#1e1e1e', 
-    border: '#444',
-    notification: Colors.light.tint,
+    card: Colors.light.card, 
+    border: Colors.light.border,
+    notification: Colors.light.notification,
   },
 };
 
@@ -21,8 +21,8 @@ export const DarkTheme: Theme = {
     background: Colors.dark.background,
     text: Colors.dark.text,
     primary: Colors.dark.tint,
-    card: '#333',
-    border: '#333',
-    notification: Colors.dark.tint,
+    card: Colors.dark.card,
+    border: Colors.dark.border,
+    notification: Colors.dark.notification,
   },
 };
