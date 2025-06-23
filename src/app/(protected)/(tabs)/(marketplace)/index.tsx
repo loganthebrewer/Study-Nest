@@ -1,3 +1,4 @@
+import MarketplacePostCard from '@/components/MarketplacePostCard'
 import { View, Text } from '@components/Themed'
 import Colors from '@constants/Colors'
 import { Link } from 'expo-router'
@@ -6,11 +7,10 @@ import { StyleSheet } from 'react-native'
 
 const MarketplaceView = () => {
   return (
-    <View>
+    <View style={styles.ItemsView}>
+      <MarketplacePostCard/>
+      <MarketplacePostCard/>
       <Link href="/newMarketplacePost">
-        <View style={styles.container}>
-          <Text style={styles.newPostPlus}>+</Text>
-        </View>
       </Link>
     </View>
   )
@@ -19,7 +19,13 @@ const MarketplaceView = () => {
 export default MarketplaceView
 
 const styles = StyleSheet.create({
-  container: {
+  ItemsView: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    flexWrap: 'wrap',
+  },
+  buttonContainer: {
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -27,8 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: "green",
   },
-  newPostPlus: {
-    fontWeight: 'black',
-    fontSize: 30,
+  postButton: {
+    width: 5
   }
 })
