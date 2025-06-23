@@ -6,7 +6,7 @@ import{Channel, MessageList,MessageInput, useChatContext, ChannelList} from 'str
 import { StreamChat} from "stream-chat"
 
 
-const client = StreamChat.getInstance('6dvxg9x3awwd');
+
 
 export default function ChannelScreen(){
     const [channel, setChannel] = useState<ChannelType | null>(null)

@@ -2,10 +2,6 @@ import {ChannelList, Channel, MessageList, MessageInput, OverlayProvider} from '
 import React from 'react'
 import {router} from 'expo-router'
 
-
-
-
-
 export default function ChatScreen(){
     //const [channel, setChannel] = useState();
     //console.log(channel)

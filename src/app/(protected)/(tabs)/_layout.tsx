@@ -45,7 +45,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }
       } />
-      <Tabs.Screen name="Chat" options={
+      <Tabs.Screen name="Chat/index" options={
         {
 
         title: 'Chat',

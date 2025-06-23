@@ -1,4 +1,4 @@
-import { Slot, Stack } from "expo-router";
+/*import { Slot, Stack } from "expo-router";
 import { useEffect } from "react"
 import { StreamChat} from "stream-chat"
 import { ChannelList, Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
@@ -31,4 +31,4 @@ useEffect(() => {
   </OverlayProvider>
 
   )
-}
+}*/
