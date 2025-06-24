@@ -6,23 +6,24 @@ import { ChannelList, Chat, OverlayProvider, useCreateChatClient } from "stream-
 const client = StreamChat.getInstance('6dvxg9x3awwd');
 
 export default function ChatLayout() {
-useEffect(() => {
-  const connect = async () =>{
-    await client.connectUser(
-      {
-        id: "jlahey",
-        name: "Jim Lahey",
-        image: "https://i.imgur.com/fR9Jz14.png",
-      },
-      client.devToken("jlahey"),
-    );
-  //  const channel = client.channel('messaging', 'the_park', {
-   //   name: 'The Park',
- //   });
-   // await channel.watch();
-  }
-  connect();
-})
+  useEffect(() => {
+    const setup = async () => {
+      if (!client.user) {
+        await client.connectUser(
+          {
+            id: 'jlahey',
+            name: 'Jim Lahey',
+            image: 'https://i.imgur.com/fR9Jz14.png',
+          },
+          client.devToken('jlahey')
+        );
+        console.log('Connecting user...');
+        console.log('Client user before connect:', client.userID);
+      }
+    };
+    setup();
+    console.log('Connected! Client user:', client.userID);
+  }, []);
   return (
   <OverlayProvider>
     <Chat client={client}>
