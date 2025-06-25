@@ -8,10 +8,9 @@ export default function MarketplaceLayout() {
             name="index"
             options={{
                 title: "Marketplace",
-                headerRight: () => <Button onPress={() => router.push("/newMarketplacePost")} title="New Post"></Button>
+                headerRight: () => <Button onPress={() => router.push("/newMarketplacePost")} title="New Post"/>
             }}
             />
-            
         </Stack>
     )
 }

@@ -13,9 +13,7 @@ export default function RootLayout() {
       screenOptions={{
         headerShown: false,
         headerStyle: {
-          backgroundColor: colorScheme === 'dark' ? DarkTheme.colors.background : DefaultTheme.colors.background,
         },
-        headerTintColor: colorScheme === 'dark' ? DarkTheme.colors.text : DefaultTheme.colors.text,
       }}
     >
       <Stack.Screen name="(auth)" />

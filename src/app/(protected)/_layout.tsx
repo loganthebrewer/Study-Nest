@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { Button } from "react-native";
 
 export default function ProtectedLayout() {
   return (
@@ -17,8 +18,12 @@ export default function ProtectedLayout() {
     <Stack.Screen
     name="newMarketplacePost"
     options={{
-      title: "New Post",
-      headerShown: true
+      title: "New Listing",
+      headerShown: true,
+      headerRight: () => (
+        <Button title="Publish" onPress={() => alert('Post (not really) Published!')} />
+      ),
+      headerBackButtonDisplayMode: "minimal",
     }}
     />
 
