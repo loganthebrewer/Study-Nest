@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, useColorScheme, } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import { Text, View } from './Themed'
+import { Text, View } from 'react-native'
 import Colors from '@/constants/Colors'
 import { Image } from 'react-native'
 
@@ -16,7 +16,10 @@ const MarketplacePostCard = () => {
                     style={styles.image}
                     resizeMode="cover" // or "contain"
                 />
-                <Text style={styles.title}>Cat</Text>
+                <View style={[styles.bottomTextContainer]}>
+                    <Text style={[styles.title, {color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}]}>Cat</Text>
+                    <Text style={[styles.price, {color: colorScheme === 'dark' ? Colors.dark.textSecondary : Colors.light.textSecondary}]}>$1</Text>
+                </View>
             </Pressable>
         </Link>
     )
@@ -40,9 +43,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: '600',
-        marginVertical: 10,
     },
     price: {
-
+        fontSize: 20,
+        
+    },
+    bottomTextContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        padding: 10,
+        justifyContent: 'space-between'
     }
 })
