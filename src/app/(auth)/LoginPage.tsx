@@ -3,6 +3,7 @@ import { Alert, StyleSheet, AppState, TextInput, Button, useColorScheme, Keyboar
 import { supabase } from '@/lib/supabase'
 import Colors from '@/constants/Colors'
 import { Text, View } from '@/components/Themed'
+import { router } from 'expo-router'
 
 
 // Tells Supabase Auth to continuously refresh the session automatically if
@@ -53,12 +54,22 @@ export default function Auth() {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView behavior='padding' style={[styles.container, {backgroundColor: colorScheme === 'dark' ? Colors.dark.background : Colors.light.background}]} >
-        <Text style={styles.headline}>Study Nest</Text> 
+        <Text style={styles.headline}>Study Nest</Text>
+
+
+
+
+        <Button title="Bypass Login" onPress={() => router.push("/newMarketplacePost")}/>
+
+
+
+          
         <View style={styles.loginComponent}>
           <View style={[styles.emailInput, styles.verticallySpaced, {borderColor: '#ccc'}]}>
             <Text>Email</Text>
             <TextInput
               style={{color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}}
+              placeholderTextColor={colorScheme === 'dark' ? Colors.dark.textSecondary : Colors.light.textSecondary}
               onChangeText={(text) => setEmail(text)}
               value={email}
               placeholder="email@address.com"
@@ -73,6 +84,7 @@ export default function Auth() {
               value={password}
               secureTextEntry={true}
               placeholder="Password"
+              placeholderTextColor={colorScheme === 'dark' ? Colors.dark.textSecondary : Colors.light.textSecondary}
               autoCapitalize={'none'}
             />
           </View>
@@ -124,6 +136,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   loginButton: {
-    borderRadius: 4,
+    borderRadius: 10,
   }
 })

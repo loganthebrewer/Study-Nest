@@ -16,6 +16,9 @@
       "@lib/*": [
         "src/lib/*"
       ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
     }
   },
   "include": [
