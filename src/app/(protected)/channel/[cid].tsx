@@ -28,7 +28,7 @@ export default function ChannelScreen() {
     };
 
     fetchChannel();
-  }, [cid]);
+  }, [cid]); 
 
   if (!client || !client.userID) {
     return <ActivityIndicator />;
