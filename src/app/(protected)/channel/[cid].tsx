@@ -3,6 +3,7 @@ import { ActivityIndicator, View, Text } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Channel as ChannelType } from 'stream-chat';
 import { Channel, MessageList, MessageInput, useChatContext } from 'stream-chat-expo';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ChannelScreen() {
   const [channel, setChannel] = useState<ChannelType | null>(null);
@@ -41,7 +42,9 @@ export default function ChannelScreen() {
   return (
     <Channel channel={channel}>
       <MessageList />
+      <SafeAreaView edges={['bottom']}>
       <MessageInput />
+      </SafeAreaView>
     </Channel>
   );
 }
