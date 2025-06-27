@@ -5,12 +5,15 @@ import { useColorScheme } from "react-native";
 import{GestureHandlerRootView} from "react-native-gesture-handler"
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import IndexPage from ".";
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <SafeAreaProvider>
     <GestureHandlerRootView>
+      <IndexPage>
    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <Stack
       screenOptions={{
@@ -25,6 +28,7 @@ export default function RootLayout() {
       <Stack.Screen name="(protected)"/>
     </Stack>
     </ThemeProvider>
+    </IndexPage>
     </GestureHandlerRootView>
     </SafeAreaProvider>
   );

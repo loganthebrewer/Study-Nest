@@ -5,11 +5,21 @@ import { useEffect } from "react"
 import { StreamChat} from "stream-chat"
 import { ChannelList, Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
 import { ActivityIndicator } from "react-native";
+import { useAuth } from "@/app";
 
-const client = StreamChat.getInstance(process.env.EXPO_PUBLIC_STREAM_API_KEY);
+//import the hook so we can get user session details
+
+const client = StreamChat.getInstance("6dvxg9x3awwd");
 
 export default function ChatProvider({children}: PropsWithChildren){
-  const [isReady, setIsReady] = useState(false)
+  const [isReady, setIsReady] = useState(false);
+
+  const { user } = useAuth();
+
+  // Debugging check log
+  console.log(user);
+
+
     useEffect(() => {
         const connect = async () => {
           if (!client.user) {
@@ -36,9 +46,9 @@ export default function ChatProvider({children}: PropsWithChildren){
           setIsReady(false);
         }
       }, []);
-      if(!isReady){
+     /* if(!isReady){
         return < ActivityIndicator />
-      }
+      }*/
     return (
         <OverlayProvider>
         <Chat client={client}>{children}</Chat>
