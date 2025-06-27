@@ -14,27 +14,29 @@ const client = StreamChat.getInstance("6dvxg9x3awwd");
 export default function ChatProvider({children}: PropsWithChildren){
   const [isReady, setIsReady] = useState(false);
 
-  const { user } = useAuth();
+  const { profile } = useAuth();
 
   // Debugging check log
-  console.log(user);
+  //console.log(profile);
 
 
     useEffect(() => {
         const connect = async () => {
-          if (!client.user) {
+          if(!profile){
+            return;
+          }
             await client.connectUser(
               {
-                id: 'jlahey',
-                name: 'Jim Lahey',
+                id: profile.id,
+                name: profile.full_name,
                 image: 'https://i.imgur.com/fR9Jz14.png',
               },
-              client.devToken('jlahey')
+              client.devToken(profile.id)
             );
             setIsReady(true);
             console.log('Connecting user...');
             console.log('Client user before connect:', client.userID);
-          }
+          
         };
         connect();
         console.log('Connected! Client user:', client.userID);
@@ -42,10 +44,12 @@ export default function ChatProvider({children}: PropsWithChildren){
         //clean up function
         
         return () => {
-          client.disconnectUser();
+          if(isReady){
+            client.disconnectUser();
+          }
           setIsReady(false);
         }
-      }, []);
+      }, [profile?.id]);
      /* if(!isReady){
         return < ActivityIndicator />
       }*/

@@ -10,14 +10,17 @@ import { PropsWithChildren, createContext } from "react";
 type AuthContext ={
   session: Session | null;
   user: User | null;
+  profile: any | null;
 }
 const AuthContext = createContext<AuthContext>({
   session: null,
   user: null,
+  profile: null,
 });
 
 export default function IndexPage({children}: PropsWithChildren) {
   const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -38,7 +41,27 @@ export default function IndexPage({children}: PropsWithChildren) {
     })
     }, [])
 
-return <AuthContext.Provider value={{session, user: session?.user ?? null}}>
+  // fetch the profile for streamchat
+  useEffect(() => {
+    if(!session?.user){
+      //setProfile(null);
+      return;
+    }
+    const fetchProfile = async () => {
+      let { data, error} = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', session.user.id)
+      .single();
+      setProfile(data)
+    };
+    fetchProfile();
+
+  }, [session?.user])
+  // debug
+  console.log(profile);
+
+return <AuthContext.Provider value={{session, user: session?.user ?? null, profile}}>
   {children}
   </AuthContext.Provider>;  
  

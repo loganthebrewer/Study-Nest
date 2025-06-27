@@ -7,6 +7,7 @@ import { Session } from '@supabase/supabase-js'
 import { useAuth } from '@/app'
 
 import  Avatar  from 'src/components/Avatar'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default function Account() {
   const {session} = useAuth();
@@ -88,8 +89,8 @@ export default function Account() {
   }
 
   return (
-    <View style={styles.container}>
-      <View>
+    <ScrollView style={styles.container}>
+      <View style ={{ alignItems: 'center'}}>
       <Avatar
         size={200}
         url={avatarUrl}
@@ -125,7 +126,7 @@ export default function Account() {
       <View style={styles.verticallySpaced}>
         <Button title="Sign Out" onPress={() => supabase.auth.signOut()} />
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
