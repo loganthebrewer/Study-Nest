@@ -6,6 +6,8 @@ import { Session } from '@supabase/supabase-js'
 
 import { useAuth } from '@/app'
 
+import  Avatar  from 'src/components/Avatar'
+
 export default function Account() {
   const {session} = useAuth();
   const [loading, setLoading] = useState(true)
@@ -87,6 +89,18 @@ export default function Account() {
 
   return (
     <View style={styles.container}>
+      <View>
+      <Avatar
+        size={200}
+        url={avatarUrl}
+        onUpload={(url: string) => {
+          setAvatarUrl(url)
+          updateProfile({ username, website, avatar_url: url, full_name: fullName })
+        }}
+      />
+    </View>
+
+
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input label="Email" value={session?.user?.email} disabled />
       </View>
