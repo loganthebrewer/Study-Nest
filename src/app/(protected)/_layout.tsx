@@ -6,10 +6,6 @@ export default function ChatLayout() {
   
   const { user } = useAuth();
 
-  // this is to redirect user back to login
-  /*if (!user){
-    return <Redirect href="/(auth)" />
-  }*/
   return (
   
       <ChatProvider>

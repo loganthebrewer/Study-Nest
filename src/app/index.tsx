@@ -61,7 +61,7 @@ export default function IndexPage({children}: PropsWithChildren) {
   // debug
   console.log(profile);
 
-return <AuthContext.Provider value={{session, user: session?.user ?? null, profile}}>
+return <AuthContext.Provider value={{session, user: session?.user, profile}}>
   {children}
   </AuthContext.Provider>;  
  
