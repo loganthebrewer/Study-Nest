@@ -1,39 +1,27 @@
-import MarketplacePostCard from '@/components/MarketplacePostCard'
-import { View, Text } from '@components/Themed'
-import Colors from '@constants/Colors'
-import { Link } from 'expo-router'
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react';
+import { StyleSheet, FlatList } from 'react-native';
+import MarketplacePostCard from '@/components/MarketplacePostCard';
+import listings from '@assets/data/marketplaceTestData';
+import { View } from '@/components/Themed';
 
 const MarketplaceView = () => {
-  return (
-    <View style={styles.ItemsView}>
-      <MarketplacePostCard/>
-      <MarketplacePostCard/>
-      <Link href="/newMarketplacePost">
-      </Link>
-    </View>
-  )
-}
-
-export default MarketplaceView
+	return (
+		<View style={styles.screenContainer}>
+			<FlatList
+				data={listings}
+				renderItem={({ item }) => <MarketplacePostCard listing={item} />}
+				numColumns={2}
+				contentContainerStyle={{ padding: 10, gap: 10 }}
+				columnWrapperStyle={{ gap: 10 }}
+			/>
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
-  ItemsView: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 10,
-    flexWrap: 'wrap',
-  },
-  buttonContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "green",
-  },
-  postButton: {
-    width: 5
-  }
-})
+	screenContainer: {
+		flex: 1,
+	},
+});
+
+export default MarketplaceView;
