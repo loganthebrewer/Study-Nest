@@ -1,56 +1,46 @@
 import { Image, Keyboard, KeyboardAvoidingView, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
 import { Text, View } from '@/components/Themed'
-import Colors from '@/constants/Colors'
-
+import colors from '@/constants/colors'
+import { Dimensions } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native'
+import ImageUploadCarousel from '@/components/ImageUploadCarousel'
 
 const newMarketplacePost = () => {
+  const screenWidth = Dimensions.get('window').width;
+
   const colorScheme = useColorScheme();
   return (
     <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
-      <ScrollView alwaysBounceHorizontal={false} style={[styles.container, {backgroundColor: colorScheme === 'dark' ? Colors.dark.background : Colors.light.background}, {padding: 10}]}>
+      <ScrollView alwaysBounceHorizontal={false} style={[styles.container, {backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background}, {padding: 10}]}>
         <TextInput
-          style={[styles.textInputTitle, {color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}]}
+          style={[styles.textInputTitle, {color: colorScheme === 'dark' ? colors.dark.text : colors.light.text}]}
           placeholder="Title"
-          placeholderTextColor={colorScheme === 'dark' ? Colors.dark.textSecondary : Colors.light.textSecondary}
-        /> 
-        <TextInput
-          style={[styles.textInputPrice, {color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}]}
-          placeholder="Price"
-          placeholderTextColor={colorScheme === 'dark' ? Colors.dark.textSecondary : Colors.light.textSecondary}
-          caretHidden={true}
-          inputMode='decimal'
-        /> 
-        <View style={[styles.cardContainer, styles.imagesContainer, styles.marginVertical10, { backgroundColor: colorScheme == 'dark' ? Colors.dark.card : Colors.light.card }]}>
+          placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
+        />
+        <View style={ styles.priceInputContainer }>
+          <Text style={[styles.dollarSign, {color: colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}]}>$</Text>
+          <TextInput
+            style={[styles.textInputPrice, {color: colorScheme === 'dark' ? colors.dark.text : colors.light.text}]}
+            placeholder="Price"
+            placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
+            caretHidden={true}
+            inputMode='numeric'
+          /> 
+        </View> 
+        
+        <View style={[styles.cardContainer, styles.imagesContainer, styles.marginVertical10, { backgroundColor: colorScheme == 'dark' ? colors.dark.card : colors.light.card }]}>
           <Text style={styles.cardTitle}>Images</Text>
-          <ScrollView horizontal={true} style={[styles.carousel]}>
-            <Image
-              source={{ uri: "https://www.wondercide.com/cdn/shop/articles/Upside_down_gray_cat.png?v=1685551065" }}
-              style={styles.carouselImage}
-            />
-            <Image
-              source={{ uri: "https://www.wondercide.com/cdn/shop/articles/Upside_down_gray_cat.png?v=1685551065" }}
-              style={styles.carouselImage}
-            />
-            <Image
-              source={{ uri: "https://www.wondercide.com/cdn/shop/articles/Upside_down_gray_cat.png?v=1685551065" }}
-              style={styles.carouselImage}
-            />
-            <Image
-              source={{ uri: "https://www.wondercide.com/cdn/shop/articles/Upside_down_gray_cat.png?v=1685551065" }}
-              style={styles.carouselImage}
-            />
-            
-          </ScrollView>
+          <ImageUploadCarousel></ImageUploadCarousel>
         </View>
         
         
-        <View style={[styles.cardContainer, styles.descriptionContainer, styles.marginVertical10, { backgroundColor: colorScheme === 'dark' ? Colors.dark.card : Colors.light.card }]}>
+        <View style={[styles.cardContainer, styles.descriptionContainer, styles.marginVertical10, { backgroundColor: colorScheme === 'dark' ? colors.dark.card : colors.light.card }]}>
           <Text style={styles.cardTitle}>Description</Text>
           <TextInput
-            style={[styles.textInputDescription, {color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text},]}
+            style={[styles.textInputDescription, {color: colorScheme === 'dark' ? colors.dark.text : colors.light.text},]}
             placeholder="Description"
+            placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
             multiline={true}
           />
         </View>
@@ -78,14 +68,23 @@ const styles = StyleSheet.create({
   textInputTitle: {
     height: 60,
     fontSize: 50,
-    borderBottomColor: 'black',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  priceInputContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    borderBottomColor: 'gray',
     borderBottomWidth: 1,
   },
   textInputPrice: {
     height: 50,
+    minWidth: 50,
     fontSize: 40,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+  },
+  dollarSign: {
+    height: 50,
+    fontSize: 40,
   },
   descriptionContainer: {
     flex: 1,
