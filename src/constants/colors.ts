@@ -7,7 +7,7 @@ export default {
     textSecondary: "#333",
     background: '#fff',
     card: '#f0f0f0',
-    cardSecondary: '#DADADA',
+    cardSecondary: '#B8B8B8',
     border: '#444',
     notification: '#2f95dc',
     tint: tintColorLight,
