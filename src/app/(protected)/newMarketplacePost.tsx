@@ -1,4 +1,4 @@
-import { Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
+import { Button, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
 import { Text, View } from '@/components/Themed'
 import { View as DefaultView } from 'react-native'
 import colors from '@/constants/colors'
@@ -6,6 +6,7 @@ import { Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import ImageUploadCarousel from '@/components/ImageUploadCarousel'
+import { Stack } from 'expo-router'
 
 
 
@@ -19,8 +20,21 @@ const newMarketplacePost = () => {
   const screenWidth = Dimensions.get('window').width;
   const colorScheme = useColorScheme();
   return (
+    <DefaultView style={{flex: 1}}>
+      <Stack.Screen
+    options={{
+      title: "New Listing",
+      headerShown: true,
+      headerRight: () => (
+        <Button title="Publish" onPress={() => alert('Post (not really) Published!')} />
+      ),
+      headerBackButtonDisplayMode: "minimal",
+    }}
+    />
+
     <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
       <ScrollView alwaysBounceHorizontal={false} style={[styles.container, {backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background}, {padding: 10}]}>
+
         <TextInput
           style={[styles.textInputTitle, {color: colorScheme === 'dark' ? colors.dark.text : colors.light.text}]}
           placeholder="Title"
@@ -55,6 +69,7 @@ const newMarketplacePost = () => {
         </View>
       </ScrollView>
     </TouchableWithoutFeedback>
+    </DefaultView>
   )
 }
 

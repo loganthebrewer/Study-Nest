@@ -15,18 +15,6 @@ export default function ProtectedLayout() {
       headerShown: false
     }}
     />
-    <Stack.Screen
-    name="newMarketplacePost"
-    options={{
-      title: "New Listing",
-      headerShown: true,
-      headerRight: () => (
-        <Button title="Publish" onPress={() => alert('Post (not really) Published!')} />
-      ),
-      headerBackButtonDisplayMode: "minimal",
-    }}
-    />
-
     </Stack>
   );
 }
