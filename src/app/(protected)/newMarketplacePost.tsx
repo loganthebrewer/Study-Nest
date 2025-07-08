@@ -1,11 +1,10 @@
-import { Image, ImageBackground, Keyboard, KeyboardAvoidingView, Pressable, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
+import { Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
 import { Text, View } from '@/components/Themed'
 import { View as DefaultView } from 'react-native'
 import colors from '@/constants/colors'
 import { Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
-import * as ImagePicker from 'expo-image-picker';
 import ImageUploadCarousel from '@/components/ImageUploadCarousel'
 
 
