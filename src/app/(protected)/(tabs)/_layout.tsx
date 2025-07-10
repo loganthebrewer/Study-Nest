@@ -2,7 +2,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { router, Tabs, Link } from "expo-router";
 import React from "react";
 import { Button, useColorScheme } from "react-native";
-import Colors from "@/constants/Colors";
+
 
 
 export default function TabsLayout() {
@@ -19,8 +19,6 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarInactiveTintColor: useColorScheme() === 'dark' ? Colors.dark.tabIconDefault : Colors.light.tabIconDefault,
-        tabBarActiveTintColor: useColorScheme() === 'dark' ? Colors.dark.tabIconSelected : Colors.light.tabIconSelected,
       }}
     >
       <Tabs.Screen
@@ -35,6 +33,13 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
+      <Tabs.Screen name="(marketplace)" options={
+        {
+          title: 'Marketplace',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="shopping-basket" color={color} />,
+        }
+      } />
       <Tabs.Screen name="Profile" options={
         {
           title: 'Profile',

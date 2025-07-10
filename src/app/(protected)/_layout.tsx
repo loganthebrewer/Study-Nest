@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { Button } from "react-native";
 
 export default function ProtectedLayout() {
   return (
@@ -7,6 +8,13 @@ export default function ProtectedLayout() {
         headerShown: false,
       }}
     >
+    <Stack.Screen
+    name="(tabs)"
+    options={{
+      title: "",
+      headerShown: false
+    }}
+    />
     </Stack>
   );
 }
