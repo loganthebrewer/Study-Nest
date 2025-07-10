@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Alert, StyleSheet, AppState, TextInput, Button, useColorScheme, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { supabase } from '@/lib/supabase'
-import Colors from '@/constants/Colors'
+import colors from '@/constants/colors'
 import { Text, View } from '@/components/Themed'
+import { router } from 'expo-router'
 
 
 // Tells Supabase Auth to continuously refresh the session automatically if
@@ -52,13 +53,23 @@ export default function Auth() {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAvoidingView behavior='padding' style={[styles.container, {backgroundColor: colorScheme === 'dark' ? Colors.dark.background : Colors.light.background}]} >
-        <Text style={styles.headline}>Study Nest</Text> 
+      <KeyboardAvoidingView behavior='padding' style={[styles.container, {backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background}]} >
+        <Text style={styles.headline}>Study Nest</Text>
+
+
+
+
+        <Button title="Bypass Login" onPress={() => router.push("/newMarketplacePost")}/>
+
+
+
+          
         <View style={styles.loginComponent}>
           <View style={[styles.emailInput, styles.verticallySpaced, {borderColor: '#ccc'}]}>
             <Text>Email</Text>
             <TextInput
-              style={{color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}}
+              style={{color: colorScheme === 'dark' ? colors.dark.text : colors.light.text}}
+              placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
               onChangeText={(text) => setEmail(text)}
               value={email}
               placeholder="email@address.com"
@@ -68,19 +79,20 @@ export default function Auth() {
           <View style={[styles.passwordInput, styles.verticallySpaced, {borderColor: '#ccc'}]}>
             <Text>Password</Text>
             <TextInput
-              style={{color: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text}}  
+              style={{color: colorScheme === 'dark' ? colors.dark.text : colors.light.text}}  
               onChangeText={(text) => setPassword(text)}
               value={password}
               secureTextEntry={true}
               placeholder="Password"
+              placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
               autoCapitalize={'none'}
             />
           </View>
-          <View style={[styles.loginButton, styles.verticallySpaced, styles.mt20]} lightColor={Colors.light.button} darkColor={Colors.dark.button}>
-            <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} color={colorScheme === 'dark' ? Colors.dark.buttonText : Colors.light.buttonText} />
+          <View style={[styles.loginButton, styles.verticallySpaced, styles.mt20]} lightColor={colors.light.button} darkColor={colors.dark.button}>
+            <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} color={colorScheme === 'dark' ? colors.dark.buttonText : colors.light.buttonText} />
           </View>
           <View style={styles.verticallySpaced}>
-            <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} color={colorScheme === 'dark' ? Colors.dark.text : Colors.light.text} />
+            <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} color={colorScheme === 'dark' ? colors.dark.text : colors.light.text} />
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -124,6 +136,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   loginButton: {
-    borderRadius: 4,
+    borderRadius: 10,
   }
 })

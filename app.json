@@ -29,7 +29,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "StudyNest needs photos access to upload images to Marketplace and send photos in Chat."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

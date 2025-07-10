@@ -1,0 +1,1 @@
+export const MARKETPLACE_IMAGE_FALLBACK = 'https://wpcdn.web.wsu.edu/cahnrs/uploads/sites/4/cat2-1024x676.jpg'
