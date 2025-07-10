@@ -2,13 +2,20 @@ import { Stack } from "expo-router";
 import { ThemeProvider } from '@react-navigation/native';
 import { DarkTheme, DefaultTheme } from "@/constants/theme";
 import { useColorScheme } from "react-native";
+//define global providers
+import{GestureHandlerRootView} from "react-native-gesture-handler"
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import IndexPage from ".";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <SafeAreaProvider>
+    <GestureHandlerRootView>
+      <IndexPage>
+   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <Stack
       screenOptions={{
         headerShown: false,
@@ -20,6 +27,9 @@ export default function RootLayout() {
       <Stack.Screen name="(protected)"/>
     </Stack>
     </ThemeProvider>
+    </IndexPage>
+    </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 
 }
