@@ -1,4 +1,4 @@
-import { Button, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
+import { Alert, Button, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, useColorScheme } from 'react-native'
 import { Text, View } from '@/components/Themed'
 import { View as DefaultView } from 'react-native'
 import colors from '@/constants/colors'
@@ -6,8 +6,10 @@ import { Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import ImageUploadCarousel from '@/components/ImageUploadCarousel'
-import { Stack } from 'expo-router'
-
+import { router, Stack } from 'expo-router'
+import { supabase } from '@/lib/supabase'
+import 'react-native-get-random-values'; // Necessary for UUID generation. See https://github.com/uuidjs/uuid?tab=readme-ov-file#getrandomvalues-not-supported
+import { v4 as uuidv4 } from 'uuid';
 
 
 const newMarketplacePost = () => {
@@ -16,20 +18,74 @@ const newMarketplacePost = () => {
   const [postDescription, setDescription] = useState<string>('');
   const [images, setImages] = useState<string[]>([]);
   
+  const publishPost = async () => {
+    const isDebug : boolean = false;
+    if(isDebug) {
+      Alert.alert("Debug Mode Active", "No changes have been made.")
+    }
+    else {
+      
+      try {
+          const listingUUID = uuidv4();
+          console.log("Post ID: " + listingUUID);
+          const author_id = ((await supabase.auth.getUser()).data.user?.id)
+          if(!author_id) {
+            throw new Error("User is not logged in.")
+          }
+          if(!postTitle) {
+            throw new Error("Listing is missing a title.")
+          }
+          if(images.length===0) {
+            throw new Error("Listing is missing images")
+          }
+          if(postPrice == null) {
+            throw new Error("No price specified.")
+          }
+
+
+          console.log(postPrice)
+          const { data, error } = 
+          await supabase
+          .from('marketplace_posts')
+          .insert({
+            mp_post_id: listingUUID, 
+            title: postTitle,
+            price: postPrice,
+            description: postDescription,
+            author_id: author_id,
+          })
+       
+          if(error) { //Supabase errors
+            throw new Error(error.message);
+          }
+        } 
+        catch (err) {
+          const errorTitle = err instanceof Error ? err.name : 'Unknown Error';
+          const errorMessage = err instanceof Error ? err.message : 'An unknown error has occurred.';
+          Alert.alert(errorTitle, errorMessage);
+          console.error(errorTitle + ":", errorMessage)
+          return;
+        }
+      }
+    router.back();
+    return;
+  } 
+
+
 
   const screenWidth = Dimensions.get('window').width;
   const colorScheme = useColorScheme();
   return (
     <DefaultView style={{flex: 1}}>
       <Stack.Screen
-    options={{
-      title: "New Listing",
-      headerShown: true,
-      headerRight: () => (
-        <Button title="Publish" onPress={() => alert('Post (not really) Published!')} />
-      ),
-      headerBackButtonDisplayMode: "minimal",
-    }}
+      options={{
+        title: "New Listing",
+        headerShown: true,
+        headerRight: () => (
+          <Button title="Publish" onPress={() => publishPost()} />
+        ),
+        headerBackButtonDisplayMode: "minimal",
+      }}
     />
 
     <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
@@ -49,6 +105,10 @@ const newMarketplacePost = () => {
             placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
             caretHidden={true}
             inputMode='numeric'
+            onChangeText={(value) => {
+              const numVal = isNaN(parseInt(value)) ? 0 : parseInt(value);
+              setPrice(numVal);
+            }}
           /> 
         </View> 
   
@@ -65,6 +125,7 @@ const newMarketplacePost = () => {
             placeholder="Description"
             placeholderTextColor={colorScheme === 'dark' ? colors.dark.textSecondary : colors.light.textSecondary}
             multiline={true}
+            onChangeText={(text) => setDescription(text)}
           />
         </View>
       </ScrollView>
