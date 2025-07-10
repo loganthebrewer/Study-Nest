@@ -10,7 +10,11 @@ export default function ChatLayout() {
   
       <ChatProvider>
     <Stack>
-        <Stack.Screen name="(tabs)" options={{headerShown :false}} />
+        <Stack.Screen 
+        name="(tabs)" 
+        options={{headerShown :false
+          
+        }} />
     </Stack>
     </ChatProvider>
   
