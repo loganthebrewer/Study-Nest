@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import { StreamChat} from "stream-chat"
 import { ChannelList, Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
 import { ActivityIndicator } from "react-native";
-import { useAuth } from "@/app";
+import { useAuth } from "src/providers/AuthProvider";
 
 import { supabase } from '@/lib/supabase'
 
@@ -54,9 +54,6 @@ export default function ChatProvider({children}: PropsWithChildren){
           setIsReady(false);
         }
       }, [profile?.id]);
-     /* if(!isReady){
-        return < ActivityIndicator />
-      }*/
     return (
         <OverlayProvider>
         <Chat client={client}>{children}</Chat>

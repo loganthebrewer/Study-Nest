@@ -1,8 +1,4 @@
-import { Redirect } from 'expo-router'
- export default function LoginPage(){
-  return <Redirect href={'/(auth)/LoginPage'} />
- }
-/*import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Redirect, router } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import { useState, useEffect, useContext } from 'react';
@@ -89,4 +85,4 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-});*/
+});

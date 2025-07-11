@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native-gesture-handler";
-import { useAuth } from "..";
+import { useAuth } from "src/providers/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import UserListItem from "@/components/UserListItem";
 
@@ -16,12 +16,12 @@ export default function UsersScreen(){
             .select('*')
             .neq('id', user.id)
         
-            if (error){
-                console.error("Error fetching users:", error.message);
-            }
-            else{
+            //if (error){
+              //  console.error("Error fetching users:", error.message);
+            //}
+            //else{
                 setUsers(profiles)
-            }
+            //}
         };
         fetchUsers();
     },[])

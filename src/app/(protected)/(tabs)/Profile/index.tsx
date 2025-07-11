@@ -4,7 +4,7 @@ import { StyleSheet, View, Alert } from 'react-native'
 import { Button, Input } from 'react-native-elements'
 import { Session } from '@supabase/supabase-js'
 
-import { useAuth } from '@/app'
+import { useAuth } from 'src/providers/AuthProvider'
 
 import  Avatar  from 'src/components/Avatar'
 import { ScrollView } from 'react-native-gesture-handler'

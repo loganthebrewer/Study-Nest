@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FlatList, TextInput, Button, Text, Pressable, View } from 'react-native';
-import { useAuth } from '@/app';
+import { useAuth } from 'src/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import { useChatContext } from 'stream-chat-expo';
 import { router } from 'expo-router';
@@ -17,7 +17,7 @@ export default function CreateGroup() {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .neq('id', user.id);
+        .neq('id', user?.id);
 
       if (!error && data) setUsers(data);
     };
@@ -31,7 +31,7 @@ export default function CreateGroup() {
   };
 
   const createGroup = async () => {
-    const memberIds = [user.id, ...selectedUsers];
+    const memberIds = [user?.id, ...selectedUsers];
 
     const channel = client.channel('messaging', {
       name: groupName,
