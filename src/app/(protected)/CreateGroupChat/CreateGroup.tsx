@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, TextInput, Button, Text, Pressable, View } from 'react-native';
+import { FlatList, TextInput, Button, Text, Pressable, View, SafeAreaView } from 'react-native';
 import { useAuth } from 'src/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import { useChatContext } from 'stream-chat-expo';
@@ -43,6 +43,7 @@ export default function CreateGroup() {
   };
 
   return (
+    <SafeAreaView style={{flex: 1 }}>
     <View style={{ padding: 20 }}>
       <Text style={{ fontWeight: 'bold' }}>Group Name</Text>
       <TextInput
@@ -71,5 +72,6 @@ export default function CreateGroup() {
       />
       <Button title="Create Group Chat" onPress={createGroup} disabled={!groupName || selectedUsers.length === 0} />
     </View>
+    </SafeAreaView>
   );
 }

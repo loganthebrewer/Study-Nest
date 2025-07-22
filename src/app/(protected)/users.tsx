@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native";
 import { useAuth } from "src/providers/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import UserListItem from "@/components/UserListItem";
@@ -26,11 +27,14 @@ export default function UsersScreen(){
         fetchUsers();
     },[])
 
-    return( <FlatList
+    return( 
+        <SafeAreaView style={{flex: 1 }}>
+    <FlatList
             data={users}
             // Later render avatar picture with user
             contentContainerStyle={{gap: 5}}
             renderItem={({ item }) => <UserListItem user={item} />}
             />
+            </SafeAreaView>
     );
 }
